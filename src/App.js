@@ -4,6 +4,7 @@ import { CustomerProvider } from "./contexts/customer";
 import SignIn from "./components/SigninPage";
 import SignUp from "./components/SignupPage";
 import Cart from "./components/CartPage"; 
+import CheckOut from "./components/CheckoutPage";
 
 function App() {
   return (
