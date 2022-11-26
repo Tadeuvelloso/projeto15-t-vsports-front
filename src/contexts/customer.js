@@ -6,12 +6,12 @@ export const CustomerContext = createContext()
 
 
 export const CustomerProvider = ({ children }) => {
-
-    const [nome, setNome] = useState("");
+    const [token, setToken] = useState() 
+    const [name, setName] = useState("");
 
     return(
         <CustomerContext.Provider 
-            value={ {nome, setNome} }>
+            value={{ token, setToken, name, setName }}>
             {children}
         </CustomerContext.Provider>
     )

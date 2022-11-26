@@ -1,10 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import GlobalStyle from "./components/GlobalStyle";
+import GlobalStyle from "./pages/GlobalStyle";
 import { CustomerProvider } from "./contexts/customer";
-import SignIn from "./components/SigninPage";
-import SignUp from "./components/SignupPage";
-import Cart from "./components/CartPage"; 
-import CheckOut from "./components/CheckoutPage";
+import SignIn from "./pages/SigninPage";
+import SignUp from "./pages/SignupPage";
+import Cart from "./pages/CartPage"; 
+import CheckOut from "./pages/CheckoutPage";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
         <Routes>
           <Route path="/signin" element={<SignIn />}  />
           <Route path="/signup" element={<SignUp />}/>
-          <Route path="/home" element={<HomePage />}/>
+          <Route path="/" element={<HomePage />}/>
           <Route path="/cart" element={<Cart />}/>
           <Route path="/checkout" element={<CheckOut />}/>
         </Routes>
