@@ -14,7 +14,6 @@ export default function SignUpPage() {
             password:"",
             password_confirmation:""
         })
-    let { setToken, setName } = useContext(CustomerContext)
 
     function handleForm(e) {
         setForm({
@@ -28,11 +27,8 @@ export default function SignUpPage() {
 
         axios.post(`http://localhost:5000/sign-up`, form)
             .then((resp) => {
-                console.log(resp)
-                setToken(resp.data.token)
-                setName(resp.data.name)
-                alert(`Login made with Success`)
-                navigate("/")
+                alert(`signUp made with Success`)
+                navigate("/signIn")
             })
             .catch((resp) => {
                 alert(resp.response.data)
@@ -50,7 +46,7 @@ export default function SignUpPage() {
                 <LogInContainer>
                     <SignInForm onSubmit={postSignIn}>
                         <input required type="text" name="userName" placeholder=" Insert your username" onChange={handleForm} value={form.userName}></input>
-                        <input required type="text" name="userName" placeholder=" Insert your emaik" onChange={handleForm} value={form.email}></input>
+                        <input required type="text" name="email" placeholder=" Insert your email" onChange={handleForm} value={form.email}></input>
                         <input required type="password" name="password" placeholder="insert your password" onChange={handleForm} value={form.password}></input>
                         <input required type="password" name="password_confirmation" placeholder="confirm your password" onChange={handleForm} value={form.password_confirmation}></input>
                         <SignInButton type="submit" value="Access your account"></SignInButton>
