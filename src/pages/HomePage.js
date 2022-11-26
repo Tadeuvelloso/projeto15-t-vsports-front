@@ -1,8 +1,13 @@
+import { useContext } from "react"
 import styled from "styled-components"
+import { CustomerContext } from "../contexts/customer"
 import GlobalHeader from "./components/GlobalHeader"
 
 
 export default function HomePage() {
+    let { token, name} = useContext(CustomerContext)
+
+    console.log(token)
     return(
         <>
           <GlobalHeader></GlobalHeader>  

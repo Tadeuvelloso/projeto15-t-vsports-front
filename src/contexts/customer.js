@@ -6,7 +6,7 @@ export const CustomerContext = createContext()
 
 
 export const CustomerProvider = ({ children }) => {
-    const [token, setToken] = useState() 
+    const [token, setToken] = useState(false) 
     const [name, setName] = useState("");
 
     return(

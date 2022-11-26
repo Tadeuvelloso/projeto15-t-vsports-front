@@ -28,7 +28,7 @@ export default function SignIn() {
                 .then((resp) => {
                     console.log(resp)
                     setToken(resp.data.token)
-                    setName(resp.data.name)
+                    setName(resp.data.userName)
                     alert(`Login made with Success`)
                     navigate("/")
                 })

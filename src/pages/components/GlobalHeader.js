@@ -1,27 +1,65 @@
-import { Link } from "react-router-dom"
+import { useContext } from "react"
+import { Link, useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import logoImage from "../../assets/Logo.png"
+import { CustomerContext } from "../../contexts/customer"
 
 export default function GlobalHeader() {
-    return (
-        <>
-            <GlobalContainerHeader>
-                <img src={logoImage} alt="logo" />
-                <NavContainer>
-                    <Link to = "/">
-                        <p>Home</p>
-                    </Link>
-                    <p>myCart</p>
-                    <p>CheckOut</p>
-                </NavContainer>
-                <LoginContainer>
-                    <Link to="/signin">
-                        <p>Login</p>
-                    </Link>
-                </LoginContainer>
-            </GlobalContainerHeader>
-        </>
-    )
+    let { token, name, setToken, setName } = useContext(CustomerContext)
+    const navigate = useNavigate()
+    function logOut() {
+        const confirmTologOut = window.confirm(`Confirm to logout ${name}`)
+
+        if (confirmTologOut) {
+            console.log(confirmTologOut)
+            setToken(false)
+            setName("")
+            navigate("/")
+        }
+    }
+
+
+    if (!token) {
+        return (
+            <>
+                <GlobalContainerHeader>
+                    <img src={logoImage} alt="logo" />
+                    <NavContainer>
+                        <Link to="/">
+                            <p>Home</p>
+                        </Link>
+                        <p>myCart</p>
+                        <p>CheckOut</p>
+                    </NavContainer>
+                    <LoginContainer>
+                        <Link to="/signin">
+                            <p>Login</p>
+                        </Link>
+                    </LoginContainer>
+                </GlobalContainerHeader>
+            </>
+        )
+    }
+    else {
+        return (
+            <>
+                <GlobalContainerHeader>
+                    <img src={logoImage} alt="logo" />
+                    <NavContainer>
+                        <Link to="/">
+                            <p>Home</p>
+                        </Link>
+                        <p>myCart</p>
+                        <p>CheckOut</p>
+                    </NavContainer>
+                    <LoginContainer>
+                        <p onClick={logOut}>LogOut</p>
+                    </LoginContainer>
+                </GlobalContainerHeader>
+            </>
+        )
+    }
+
 }
 
 const GlobalContainerHeader = styled.header`
