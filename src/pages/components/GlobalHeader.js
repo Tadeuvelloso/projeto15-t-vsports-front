@@ -1,3 +1,4 @@
+import axios from "axios"
 import { useContext } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import styled from "styled-components"
@@ -5,22 +6,36 @@ import logoImage from "../../assets/Logo.png"
 import { CustomerContext } from "../../contexts/customer"
 
 export default function GlobalHeader() {
-    let { token, name, setToken, setName, setMyCartArray } = useContext(CustomerContext)
+    let { token, name, setToken, setName, setMyCartArray, setArrayToCheckout } = useContext(CustomerContext)
     const navigate = useNavigate()
-    function logOut() {
+
+    async function logOut(id) {
+       
         const confirmTologOut = window.confirm(`Confirm to logout ${name}`)
 
         if (confirmTologOut) {
-            console.log(confirmTologOut)
-            setToken("")
-            setName("")
-            setMyCartArray([])
-            navigate("/")
+ 
+            await axios.delete(`http://localhost:5000/myCart/${token}`, {
+                headers: {
+                    "authorization": `Bearer ${token}`
+                }
+            })
+                .then((resp) => {
+                    console.log(resp)
+                    setToken("")
+                    setName("")
+                    setMyCartArray([])
+                    setArrayToCheckout([])
+                    navigate("/")
+                }).catch((resp) => {
+                    console.log(resp.response)
+                }) 
+
         }
     }
 
 
-    if (token.length ===0) {
+    if (token.length === 0) {
         return (
             <>
                 <GlobalContainerHeader>
