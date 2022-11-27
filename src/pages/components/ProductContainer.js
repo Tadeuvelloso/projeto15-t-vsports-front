@@ -2,11 +2,31 @@ import { useContext } from "react"
 import styled from "styled-components"
 import { CustomerContext } from "../../contexts/customer"
 export default function ProductContainer(props) {
-    const { token, setName } = useContext(CustomerContext)
-    const { productName, price, description, category, country } = props
-
+    const { setMyCartArray, myCartArray, token } = useContext(CustomerContext)
+    const {id, productName, price, description, category, country, brand } = props
+    console.log(myCartArray)
     function addToCart() {
+        if (!token) {
+            alert("Por favor entre na sua conta para realizar suas compras")
+            return
+        }
+
+        const productToAdd = {
+            id,
+            productName,
+            description,
+            brand,
+            category,
+            price,
+            country,
+        }
+
+        const findProduct = myCartArray.find((obj)=> obj.id === productToAdd.id)
         
+        if (!findProduct) {
+            setMyCartArray([...myCartArray, productToAdd])
+            console.log("added product")
+        }
 
 
     }

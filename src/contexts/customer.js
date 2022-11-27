@@ -6,14 +6,16 @@ export const CustomerContext = createContext()
 
 
 export const CustomerProvider = ({ children }) => {
-    const [token, setToken] = useState(false)
+    const [token, setToken] = useState("")
     const [name, setName] = useState("");
+    const [myCartArray, setMyCartArray] = useState([])
+    const [arrayToCheckout, setArrayToCheckout] = useState([])
 
-    
+
 
     return (
         <CustomerContext.Provider
-            value={{ token, setToken, name, setName}}>
+            value={{ token, setToken, name, setName, myCartArray, setMyCartArray, arrayToCheckout, setArrayToCheckout }}>
             {children}
         </CustomerContext.Provider>
     )

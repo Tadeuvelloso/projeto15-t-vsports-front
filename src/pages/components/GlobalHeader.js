@@ -5,21 +5,22 @@ import logoImage from "../../assets/Logo.png"
 import { CustomerContext } from "../../contexts/customer"
 
 export default function GlobalHeader() {
-    let { token, name, setToken, setName } = useContext(CustomerContext)
+    let { token, name, setToken, setName, setMyCartArray } = useContext(CustomerContext)
     const navigate = useNavigate()
     function logOut() {
         const confirmTologOut = window.confirm(`Confirm to logout ${name}`)
 
         if (confirmTologOut) {
             console.log(confirmTologOut)
-            setToken(false)
+            setToken("")
             setName("")
+            setMyCartArray([])
             navigate("/")
         }
     }
 
 
-    if (!token) {
+    if (token.length ===0) {
         return (
             <>
                 <GlobalContainerHeader>
