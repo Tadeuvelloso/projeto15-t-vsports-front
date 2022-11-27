@@ -16,10 +16,8 @@ export default function HomePage() {
         axios.get(`http://localhost:5000/myCart`, config)
             .then((resp) => {
                 setArrayToCheckout(resp.data)
-                console.log("sucesso")
             })
             .catch((resp) => {
-                console.log("deu ruim")
                 console.log(resp.response)
             })
     }, [])
