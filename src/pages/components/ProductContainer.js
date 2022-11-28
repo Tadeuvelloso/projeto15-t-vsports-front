@@ -23,7 +23,7 @@ export default function ProductContainer(props) {
             image
         }
 
-        const findProduct = myCartArray.find((obj)=> obj.id === productToAdd.id)
+        const findProduct = myCartArray.find((obj)=> obj._id === productToAdd._id)
         
         if (!findProduct) {
             setMyCartArray([...myCartArray, productToAdd])
