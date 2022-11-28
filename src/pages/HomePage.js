@@ -12,7 +12,7 @@ export default function HomePage() {
     
 
     useEffect(() => {
-        const URL = "http://localhost:5000/products";
+        const URL = "https://tvs-api.onrender.com/products";
 
         const promisse = axios.get(URL);
 

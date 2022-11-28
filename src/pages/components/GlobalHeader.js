@@ -18,7 +18,7 @@ export default function GlobalHeader() {
             }
         }
         if (confirmTologOut) {
-            await axios.delete(`http://localhost:5000/myCart/${token}`, config)
+            await axios.delete(`https://tvs-api.onrender.com/myCart/${token}`, config)
                 .then((resp) => {
                     console.log(resp)
                     setToken("")
