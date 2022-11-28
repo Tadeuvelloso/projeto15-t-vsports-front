@@ -3,9 +3,7 @@ import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import { CustomerContext } from "../contexts/customer"
-import GlobalHeader from "./components/GlobalHeader"
 import ProductContainer from "./components/ProductContainer"
-
 export default function HomePage() {
     const { myCartArray, token } = useContext(CustomerContext)
     
@@ -29,22 +27,21 @@ export default function HomePage() {
     },[])
 
     function addToCart(e) {
-   
+
         e.preventDefault()
-       
-        axios.post(`http://localhost:5000/myCart`, myCartArray, {
+
+        /* axios.post(`http://localhost:5000/myCart`, myCartArray, {
             headers: {
                 "authorization": `Bearer ${token}`
             }
         })
             .then((resp) => {
                 console.log(resp.data)
-                navigate("/cart")
             })
             .catch((resp) => {
                 console.log(resp.response)
-            })
-
+            }) */
+        navigate("/cart")
     }
 
     return (

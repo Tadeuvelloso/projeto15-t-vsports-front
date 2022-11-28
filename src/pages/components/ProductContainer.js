@@ -1,9 +1,10 @@
+import axios from "axios"
 import { useContext } from "react"
 import styled from "styled-components"
 import { CustomerContext } from "../../contexts/customer"
 export default function ProductContainer(props) {
-    const { setMyCartArray, myCartArray, token } = useContext(CustomerContext)
-    const {id, productName, price, description, category, country, brand, image } = props
+    const { setMyCartArray, myCartArray, token, setArrayToCheckout } = useContext(CustomerContext)
+    const {_id, productName, price, description, category, country, brand, image } = props
     console.log(myCartArray)
     function addToCart() {
         if (!token) {
@@ -12,16 +13,17 @@ export default function ProductContainer(props) {
         }
 
         const productToAdd = {
-            id,
+            _id,
             productName,
             description,
             brand,
             category,
             price,
             country,
+            image
         }
 
-        const findProduct = myCartArray.find((obj)=> obj.id === productToAdd.id)
+        const findProduct = myCartArray.find((obj)=> obj._id === productToAdd._id)
         
         if (!findProduct) {
             setMyCartArray([...myCartArray, productToAdd])
@@ -31,11 +33,35 @@ export default function ProductContainer(props) {
 
     }
 
+    async function deleteProductFromCart(product_id) {
+        console.log(product_id)
+        const confirmToDelete = window.confirm(`Confirm to delete`)
+
+        if (confirmToDelete) {
+
+            const newArray = myCartArray.filter((array) => array._id !== product_id)
+            
+            setArrayToCheckout(newArray)
+            setMyCartArray(newArray)
+
+            /* const config = {
+                headers: {
+                    "authorization": `Bearer ${token}`
+                }
+            }
+            await axios.patch(`http://localhost:5000/myCart/delete/${product_id}`,{}, config)
+                .then((resp) => {
+                    
+                }).catch((resp) => {
+                    console.log(resp.response)
+                }) */
+        } 
+    }
 
     return (
         <OuterProductContainer>
             <ImageContainer>
-                <img src={image} alt="product image"/>
+                <img src={image} alt="product_image"/>
             </ImageContainer>
             <DescriptionContainer>
                 <OuterSizeContainer>
@@ -47,7 +73,10 @@ export default function ProductContainer(props) {
                     </PriceTag>
                 </SecondaryDescription>
                 <DescriptionText>{description}</DescriptionText>
-                <ToCartButton onClick={addToCart}>Add to my Cart</ToCartButton>
+                <ButtonContainer>
+                    <ToCartButton onClick={addToCart}>Add to my Cart</ToCartButton>
+                    <DeleteButton onClick={() => deleteProductFromCart(_id)}>remove from my Cart</DeleteButton>
+                </ButtonContainer>
             </DescriptionContainer>
         </OuterProductContainer>
     )
@@ -97,9 +126,13 @@ const OuterProductContainer = styled.div`
     box-sizing: border-box;
     border: 1px solid black;
     border-radius: 17px;
+    border-radius: 17px;
     width: 300px;
     height: 400px;
     margin:7px;
+    box-sizing: border-box;
+    padding: 5px;
+    text-align: center;
     box-sizing: border-box;
     padding: 5px;
     text-align: center;
@@ -133,11 +166,39 @@ const ToCartButton = styled.button`
     position: absolute;
     display: flex;
     border: 1px solid black;
-    width: 80px;
+    width: 90px;
     height: 40px;
     border-radius: 5px;
     background-color: #FFFFFF;
     align-self: center;
     align-items: center;
+    margin-right: 5px;
     bottom: 5px;
+`
+
+
+const DeleteButton = styled.button`
+    position: absolute;
+    display: flex;
+    border: 1px solid black;
+    width: 90px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    align-self: center;
+    align-items: center;
+    right: 10px;
+    bottom: 5px;
+`
+
+const ButtonContainer = styled.button`
+    margin-top: 5px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width:280px;
+    height: 70px;
+    border: none;
+    background-color: #FFFFFF;
+    align-self: center;
 `
