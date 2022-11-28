@@ -3,7 +3,6 @@ import { useContext, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import { CustomerContext } from "../contexts/customer"
-import GlobalHeader from "./components/GlobalHeader"
 import ProductContainer from "./components/ProductContainer"
 
 export default function CartPage() {
@@ -44,7 +43,6 @@ export default function CartPage() {
     if (myCartArray.length !== 0) {
         return (
             <>
-                <GlobalHeader></GlobalHeader>
                 <MainContent>
 
                     {myCartArray.map((array, index) => {
@@ -58,6 +56,7 @@ export default function CartPage() {
 
                 </MainContent>
                 <FooterContainer>
+                    <GoTocheckoutButton onClick={GoTocheckout}> conclude and proceed to my cart</GoTocheckoutButton>
                 </FooterContainer>
             </>
         )
@@ -75,7 +74,6 @@ export default function CartPage() {
         return (
            
             <>
-                <GlobalHeader></GlobalHeader>
                 <MainContent>
 
                    <NoProductMessage><p>There is no product in your cart</p></NoProductMessage>
