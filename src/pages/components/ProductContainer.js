@@ -3,8 +3,9 @@ import styled from "styled-components"
 import { CustomerContext } from "../../contexts/customer"
 export default function ProductContainer(props) {
     const { setMyCartArray, myCartArray, token } = useContext(CustomerContext)
-    const {id, productName, price, description, category, country, brand, image } = props
+    const {_id, productName, price, description, category, country, brand, image } = props
     console.log(myCartArray)
+    console.log(_id)
     function addToCart() {
         if (!token) {
             alert("Por favor entre na sua conta para realizar suas compras")
@@ -12,7 +13,7 @@ export default function ProductContainer(props) {
         }
 
         const productToAdd = {
-            id,
+            _id,
             productName,
             description,
             brand,
@@ -21,7 +22,7 @@ export default function ProductContainer(props) {
             country,
         }
 
-        const findProduct = myCartArray.find((obj)=> obj.id === productToAdd.id)
+        const findProduct = myCartArray.find((obj)=> obj._id === productToAdd._id)
         
         if (!findProduct) {
             setMyCartArray([...myCartArray, productToAdd])
@@ -35,7 +36,7 @@ export default function ProductContainer(props) {
     return (
         <OuterProductContainer>
             <ImageContainer>
-                <img src={image} alt="product image"/>
+                <img src={image} alt="product_image"/>
             </ImageContainer>
             <DescriptionContainer>
                 <OuterSizeContainer>

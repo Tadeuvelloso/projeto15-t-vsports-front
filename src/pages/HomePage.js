@@ -3,9 +3,7 @@ import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import { CustomerContext } from "../contexts/customer"
-import GlobalHeader from "./components/GlobalHeader"
 import ProductContainer from "./components/ProductContainer"
-
 export default function HomePage() {
     const { myCartArray, token } = useContext(CustomerContext)
     
@@ -54,7 +52,7 @@ export default function HomePage() {
                 {products.map((array, index) => {
                     return (
                         <>
-                            <ProductContainer key={index} id={array.id} brand={array.brand} image={array.image} productName={array.productName} price={array.price} description={array.description} category={array.category} country={array.country} />
+                            <ProductContainer key={index} _id={array._id} brand={array.brand} image={array.image} productName={array.productName} price={array.price} description={array.description} category={array.category} country={array.country} />
                         </>
                     )
                 })
