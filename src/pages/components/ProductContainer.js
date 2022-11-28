@@ -107,6 +107,7 @@ const ImageContainer = styled.div`
         border-radius: 20px;
     }
 `
+
 const OuterSizeContainer = styled.div`
     height: 40px;
   
@@ -129,7 +130,8 @@ const OuterProductContainer = styled.div`
     border-radius: 17px;
     width: 300px;
     height: 400px;
-    margin:7px;
+    margin-right: 10px;
+    margin-left: 10px;
     box-sizing: border-box;
     padding: 5px;
     text-align: center;

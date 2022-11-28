@@ -5,8 +5,7 @@ import styled from "styled-components"
 import { CustomerContext } from "../contexts/customer"
 import ProductContainer from "./components/ProductContainer"
 export default function HomePage() {
-    const { myCartArray, token } = useContext(CustomerContext)
-
+    const { myCartArray, token } = useContext(CustomerContext)  
     const navigate = useNavigate()
     const [products, setProducts] = useState([]);
 
@@ -23,7 +22,7 @@ export default function HomePage() {
             console.log(err.response.message);
         })
 
-    }, [])
+    },[])
 
     function addToCart(e) {
 
