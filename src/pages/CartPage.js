@@ -23,23 +23,7 @@ export default function CartPage() {
     }
 
 
-    /* useEffect(() => {
-
-        if (token) {
-            axios.get(`http://localhost:5000/myCart`, {
-                headers: {
-                    "authorization": `Bearer ${token}`
-                }
-            })
-                .then((resp) => {
-                    setArrayToCheckout(resp.data)
-                })
-                .catch((resp) => {
-                    console.log(resp.response)
-                })
-        }
-    }, []) */
-
+    
     if (myCartArray.length !== 0) {
         return (
             <>
@@ -48,7 +32,7 @@ export default function CartPage() {
                     {myCartArray.map((array, index) => {
                         return (
                             <>
-                                <ProductContainer key={index} _id={array._id} brand={array.brand} productName={array.productName} price={array.price} description={array.description} category={array.category} country={array.country} />
+                                <ProductContainer key={index} _id={array._id} brand={array.brand} productName={array.productName} price={array.price} description={array.description} category={array.category} country={array.country} image={array.image}/>
                             </>
                         )
                     })
@@ -105,9 +89,7 @@ const NoProductMessage = styled.div`
 const MainContent = styled.main`
     width: 100%;
     height: 620px;
-    border: 2px solid black;
     padding: 10px;
-
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -119,10 +101,14 @@ const MainContent = styled.main`
 const FooterContainer = styled.footer`
     width: 100%;
     height: 80px;
-    border: 2px solid black;
+    border: 4px solid #ccb404;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: fixed;
+    bottom: 0px;
+    background-color: white;
+    z-index: 1;
 `
 
 const GoTocheckoutButton = styled.button`
@@ -131,9 +117,13 @@ const GoTocheckoutButton = styled.button`
     width: 100px;
     height: 60px;
     border-radius: 5px;
-    background-color: #FFFFFF;
+    background-color: #eee393;
     align-self: center;
     align-items: center;
     bottom: 5px;
+    :hover{
+        cursor: pointer;
+        color: #847614;
+    }
 `
 

@@ -40,8 +40,6 @@ export default function SignIn() {
     return (
         <>
             <MainContent>
-                <LeftColumn></LeftColumn>
-                <RightColumn></RightColumn>
                 <LogInContainer>
                     <SignInForm onSubmit={postSignIn}>
                         <input required type="text" name="login" placeholder="E-mail or username" onChange={handleForm} value={form.email}></input>
@@ -54,46 +52,42 @@ export default function SignIn() {
                     </Link>
                 </LogInContainer>
             </MainContent>
-            <FooterContainer></FooterContainer>
         </>
     )
 }
 
 
-const RightColumn = styled.div`
-    width: 40%;
-    height: 100%;
-    border: 1px solid black;
-    z-index: 0;
-`
+
 const LogInContainer = styled.div`
-    width: 350px;
+    width: 400px;
     height: 450px;
-    border: 1px solid black;
+    border: 1px solid #968402;
     box-sizing: border-box;
-    position: fixed;
-    top: 15vh;
-    left: 55vw;
+    border-radius: 15px;
     z-index: 1;
     text-align: center;
-`
-const LeftColumn = styled.div`
-    width: 60%;
-    height: 100%;
-    border: 1px solid black;
-    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    a{
+        text-decoration: none;
+        cursor: pointer;
+        color:#ccb404;
+        :hover{
+            color: #968402;
+        }
+    }
 `
 
 
 const MainContent = styled.main` 
     width: 100%;
     height: 620px;
-    border: 2px solid black;
     box-sizing: border-box;
-
     display: flex;
     flex-direction:row;
-
+    justify-content: center;
+    align-items: center;
 `
 const SignInForm = styled.form`
     display: flex;
@@ -105,27 +99,24 @@ const SignInForm = styled.form`
     text-align: center;
 
     input {
-        border: 1px solid black;
+        border: 1px solid #968402;
         box-sizing: border-box;
         width: 300px;
         height: 60px;
         margin-bottom: 15px;
         border-radius: 5px;
-
         font-size: 20px;
         padding: 10px;
-
-
     }
 
 `
 const SignInButton = styled.input`
 font-size: 20px;
 font-weight: 700;
+background-color: #847614;
+color: white;
+ :hover{
+    color:  #ccb404;
+ }
 `
 
-const FooterContainer = styled.footer`
-    width: 100%;
-    height: 80px;
-    border: 2px solid black;
-`

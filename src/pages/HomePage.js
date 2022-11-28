@@ -30,17 +30,6 @@ export default function HomePage() {
 
         e.preventDefault()
 
-        /* axios.post(`http://localhost:5000/myCart`, myCartArray, {
-            headers: {
-                "authorization": `Bearer ${token}`
-            }
-        })
-            .then((resp) => {
-                console.log(resp.data)
-            })
-            .catch((resp) => {
-                console.log(resp.response)
-            }) */
         navigate("/cart")
     }
     if (products) {
@@ -70,23 +59,26 @@ export default function HomePage() {
 
 const MainContent = styled.main`
     width: 100%;
-    height: 620px;
-    border: 2px solid black;
+    height: 60%;
     padding: 10px;
-
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: flex-start;
     overflow: auto;
+    margin-bottom: 100px;
 `
 const FooterContainer = styled.footer`
     width: 100%;
     height: 80px;
-    border: 2px solid black;
+    border: 4px solid #ccb404;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: fixed;
+    bottom: 0px;
+    background-color: white;
+    z-index: 1;
 `
 const GoToCartButton = styled.button`
     display: flex;

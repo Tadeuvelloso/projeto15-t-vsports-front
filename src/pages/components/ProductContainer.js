@@ -1,4 +1,3 @@
-import axios from "axios"
 import { useContext } from "react"
 import styled from "styled-components"
 import { CustomerContext } from "../../contexts/customer"
@@ -117,14 +116,14 @@ const OuterSizeContainer = styled.div`
     align-items: center;
 
     h1 {
-        font-size: 18px;
+        font-size: 17px;
         font-weight: bold;
         margin-right: 10px;
     }
 `
 const OuterProductContainer = styled.div`
     box-sizing: border-box;
-    border: 1px solid black;
+    border: 1px solid #968402;
     border-radius: 17px;
     border-radius: 17px;
     width: 300px;
@@ -135,7 +134,7 @@ const OuterProductContainer = styled.div`
     text-align: center;
     box-sizing: border-box;
     padding: 5px;
-    text-align: center;
+    text-align: start;
 `
 const PriceTag = styled.div`
     display: flex;
@@ -165,30 +164,39 @@ const SecondaryDescription = styled.div`
 const ToCartButton = styled.button`
     position: absolute;
     display: flex;
-    border: 1px solid black;
+    border: 1px solid #968402;
     width: 90px;
     height: 40px;
     border-radius: 5px;
-    background-color: #FFFFFF;
+    background-color: #eee393;
     align-self: center;
     align-items: center;
     margin-right: 5px;
     bottom: 5px;
+    :hover{
+        cursor: pointer;
+        color: #847614;
+    }
 `
 
 
 const DeleteButton = styled.button`
     position: absolute;
     display: flex;
-    border: 1px solid black;
+    border: 1px solid #968402;
     width: 90px;
     height: 40px;
     border-radius: 5px;
-    background-color: #FFFFFF;
+    background-color: #eee393;
     align-self: center;
     align-items: center;
     right: 10px;
     bottom: 5px;
+    :hover{
+        cursor: pointer;
+        color: #847614;
+    }
+
 `
 
 const ButtonContainer = styled.button`
