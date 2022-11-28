@@ -6,10 +6,9 @@ import { CustomerContext } from "../contexts/customer"
 import ProductContainer from "./components/ProductContainer"
 export default function HomePage() {
     const { myCartArray, token } = useContext(CustomerContext)
-    
+
     const navigate = useNavigate()
     const [products, setProducts] = useState([]);
-    
 
     useEffect(() => {
         const URL = "http://localhost:5000/products";
@@ -24,25 +23,24 @@ export default function HomePage() {
             console.log(err.response.message);
         })
 
-    },[])
+    }, [])
 
     function addToCart(e) {
-   
+
         e.preventDefault()
-       
-        axios.post(`http://localhost:5000/myCart`, myCartArray, {
+
+        /* axios.post(`http://localhost:5000/myCart`, myCartArray, {
             headers: {
                 "authorization": `Bearer ${token}`
             }
         })
             .then((resp) => {
                 console.log(resp.data)
-                navigate("/cart")
             })
             .catch((resp) => {
                 console.log(resp.response)
-            })
-
+            }) */
+        navigate("/cart")
     }
 
     return (

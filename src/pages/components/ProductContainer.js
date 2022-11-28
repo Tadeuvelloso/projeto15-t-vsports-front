@@ -1,11 +1,12 @@
+import axios from "axios"
 import { useContext } from "react"
 import styled from "styled-components"
 import { CustomerContext } from "../../contexts/customer"
 export default function ProductContainer(props) {
-    const { setMyCartArray, myCartArray, token } = useContext(CustomerContext)
-    const {_id, productName, price, description, category, country, brand, image } = props
+    const { setMyCartArray, myCartArray, token, setArrayToCheckout } = useContext(CustomerContext)
+    const { _id, productName, price, description, category, country, brand, image } = props
     console.log(myCartArray)
-    console.log(_id)
+
     function addToCart() {
         if (!token) {
             alert("Por favor entre na sua conta para realizar suas compras")
@@ -20,10 +21,11 @@ export default function ProductContainer(props) {
             category,
             price,
             country,
+            image
         }
 
-        const findProduct = myCartArray.find((obj)=> obj._id === productToAdd._id)
-        
+        const findProduct = myCartArray.find((obj) => obj._id === productToAdd._id)
+
         if (!findProduct) {
             setMyCartArray([...myCartArray, productToAdd])
             console.log("added product")
@@ -32,11 +34,35 @@ export default function ProductContainer(props) {
 
     }
 
+    async function deleteProductFromCart(product_id) {
+        console.log(product_id)
+        const confirmToDelete = window.confirm(`Confirm to delete`)
+
+        if (confirmToDelete) {
+
+            const newArray = myCartArray.filter((array) => array._id !== product_id)
+            
+            setArrayToCheckout(newArray)
+            setMyCartArray(newArray)
+
+            /* const config = {
+                headers: {
+                    "authorization": `Bearer ${token}`
+                }
+            }
+            await axios.patch(`http://localhost:5000/myCart/delete/${product_id}`,{}, config)
+                .then((resp) => {
+                    
+                }).catch((resp) => {
+                    console.log(resp.response)
+                }) */
+        } 
+    }
 
     return (
         <OuterProductContainer>
             <ImageContainer>
-                <img src={image} alt="product_image"/>
+                <img src={image} alt="product_image" />
             </ImageContainer>
             <DescriptionContainer>
                 <OuterSizeContainer>
@@ -48,7 +74,10 @@ export default function ProductContainer(props) {
                     </PriceTag>
                 </SecondaryDescription>
                 <DescriptionText>{description}</DescriptionText>
-                <ToCartButton onClick={addToCart}>Add to my Cart</ToCartButton>
+                <ButtonContainer>
+                    <ToCartButton onClick={addToCart}>Add to my Cart</ToCartButton>
+                    <DeleteButton onClick={() => deleteProductFromCart(_id)}>remove from my Cart</DeleteButton>
+                </ButtonContainer>
             </DescriptionContainer>
         </OuterProductContainer>
     )
@@ -134,11 +163,38 @@ const ToCartButton = styled.button`
     position: absolute;
     display: flex;
     border: 1px solid black;
-    width: 80px;
+    width: 90px;
     height: 40px;
     border-radius: 5px;
     background-color: #FFFFFF;
     align-self: center;
     align-items: center;
+    margin-right: 5px;
     bottom: 5px;
+`
+
+const DeleteButton = styled.button`
+    position: absolute;
+    display: flex;
+    border: 1px solid black;
+    width: 90px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    align-self: center;
+    align-items: center;
+    right: 10px;
+    bottom: 5px;
+`
+
+const ButtonContainer = styled.button`
+    margin-top: 5px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width:280px;
+    height: 70px;
+    border: none;
+    background-color: #FFFFFF;
+    align-self: center;
 `
