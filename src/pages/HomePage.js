@@ -43,27 +43,29 @@ export default function HomePage() {
             }) */
         navigate("/cart")
     }
+    if (products) {
+        return (
+            <>
+                <MainContent>
 
-    return (
-        <>
-            <MainContent>
+                    {products.map((array, index) => {
+                        return (
+                            <>
+                                <ProductContainer key={index} _id={array._id} brand={array.brand} image={array.image} productName={array.productName} price={array.price} description={array.description} category={array.category} country={array.country} />
+                            </>
+                        )
+                    })
 
-                {products.map((array, index) => {
-                    return (
-                        <>
-                            <ProductContainer key={index} id={array.id} brand={array.brand} image={array.image} productName={array.productName} price={array.price} description={array.description} category={array.category} country={array.country} />
-                        </>
-                    )
-                })
+                    }
 
-                }
-
-            </MainContent>
-            <FooterContainer>
-                <GoToCartButton onClick={addToCart}> conclude and proceed to my cart</GoToCartButton>
-            </FooterContainer>
-        </>
-    )
+                </MainContent>
+                <FooterContainer>
+                    <GoToCartButton onClick={addToCart}> conclude and proceed to my cart</GoToCartButton>
+                </FooterContainer>
+            </>
+        )
+}
+    
 }
 
 const MainContent = styled.main`
