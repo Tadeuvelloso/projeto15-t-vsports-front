@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { CustomerContext } from "../../contexts/customer"
 export default function ProductContainer(props) {
     const { setMyCartArray, myCartArray, token } = useContext(CustomerContext)
-    const {id, productName, price, description, category, country, brand } = props
+    const {id, productName, price, description, category, country, brand, image } = props
     console.log(myCartArray)
     function addToCart() {
         if (!token) {
@@ -34,21 +34,16 @@ export default function ProductContainer(props) {
 
     return (
         <OuterProductContainer>
-            <ImageContainer></ImageContainer>
+            <ImageContainer>
+                <img src={image} alt="product image"/>
+            </ImageContainer>
             <DescriptionContainer>
                 <OuterSizeContainer>
-                    <h1>Tamanho:</h1>
-                    <InnerSizeContainer>
-                        <Size>GG</Size>
-                        <Size>G</Size>
-                        <Size>M</Size>
-                        <Size>P</Size>
-                    </InnerSizeContainer>
+                    <h1>{productName}</h1>
                 </OuterSizeContainer>
                 <SecondaryDescription>
-                    <h1>{productName}</h1>
                     <PriceTag>
-                        <h1>{Number(price).toFixed(2)} R$</h1>
+                        <h1>R$: {Number(price).toFixed(2)} </h1>
                     </PriceTag>
                 </SecondaryDescription>
                 <DescriptionText>{description}</DescriptionText>
@@ -60,7 +55,6 @@ export default function ProductContainer(props) {
 
 const DescriptionContainer = styled.div`
     position: relative;
-    border: 1px solid black;
     width: 100%;
     height: 50%;
     display: flex;
@@ -74,29 +68,28 @@ const DescriptionText = styled.div`
 
 `
 const ImageContainer = styled.div`
-    border: 1px solid black;
     width: 100%;
     height: 50%;
-    border-radius: 20px ;
+    border-radius: 20px;
+    img{
+        height: 100%;
+        width: 100%;
+        border-radius: 20px;
+    }
 `
-const InnerSizeContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 180px;
-`
+
 const OuterSizeContainer = styled.div`
     height: 40px;
-    border: 1px solid black;
+  
     width: 100%;
     display: flex;
-    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 5px;
     flex-direction: row;
     align-items: center;
 
     h1 {
-        font-size: 20px;
+        font-size: 18px;
         font-weight: bold;
         margin-right: 10px;
     }
@@ -104,26 +97,28 @@ const OuterSizeContainer = styled.div`
 const OuterProductContainer = styled.div`
     box-sizing: border-box;
     border: 1px solid black;
+    border-radius: 17px;
     width: 300px;
     height: 400px;
     margin-right: 10px;
     margin-left: 10px;
+    box-sizing: border-box;
+    padding: 5px;
+    text-align: center;
 `
 const PriceTag = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
-    border: 1px solid black;
+    
     h1 {
         font-size: 20px;
         font-weight: bold;
-
     }  
 `
 const SecondaryDescription = styled.div`
     display: flex;
-    border: 1px solid black;
     height: 40px;
     flex-direction: row;
     align-items: center;
@@ -136,16 +131,7 @@ const SecondaryDescription = styled.div`
         font-weight: bold;
     }
 `
-const Size = styled.div`
-    font-size: 20px;
-    width: 35px;
-    height: 35px;
-    border-radius: 18px;
-    border: 1px solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
+
 const ToCartButton = styled.button`
     position: absolute;
     display: flex;
