@@ -5,9 +5,11 @@ import styled from "styled-components"
 import { CustomerContext } from "../contexts/customer"
 import ProductContainer from "./components/ProductContainer"
 export default function HomePage() {
-    const { myCartArray, token } = useContext(CustomerContext)  
+    const { myCartArray, token } = useContext(CustomerContext)
+    
     const navigate = useNavigate()
     const [products, setProducts] = useState([]);
+    
 
     useEffect(() => {
         const URL = "http://localhost:5000/products";
@@ -49,7 +51,7 @@ export default function HomePage() {
                 {products.map((array, index) => {
                     return (
                         <>
-                            <ProductContainer key={index} _id={array._id} brand={array.brand} image={array.image} productName={array.productName} price={array.price} description={array.description} category={array.category} country={array.country} />
+                            <ProductContainer key={index} id={array.id} brand={array.brand} image={array.image} productName={array.productName} price={array.price} description={array.description} category={array.category} country={array.country} />
                         </>
                     )
                 })

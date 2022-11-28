@@ -126,6 +126,7 @@ const OuterProductContainer = styled.div`
     box-sizing: border-box;
     border: 1px solid black;
     border-radius: 17px;
+    border-radius: 17px;
     width: 300px;
     height: 400px;
     margin:7px;

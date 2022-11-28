@@ -2,9 +2,9 @@ import axios from "axios";
 import styled from "styled-components";
 
 
-export default function CheckOut() {
+export default function CheckOut (){
 
-    return (
+    return(
         <Main>
             <ProductsContainer>
                 <ProductsList>
