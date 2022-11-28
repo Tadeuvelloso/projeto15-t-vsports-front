@@ -132,6 +132,9 @@ const OuterProductContainer = styled.div`
     box-sizing: border-box;
     padding: 5px;
     text-align: center;
+    box-sizing: border-box;
+    padding: 5px;
+    text-align: center;
 `
 const PriceTag = styled.div`
     display: flex;
