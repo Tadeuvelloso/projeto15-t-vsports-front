@@ -10,11 +10,11 @@ export default function GlobalHeader() {
     const navigate = useNavigate()
 
     async function logOut(id) {
-       
+
         const confirmTologOut = window.confirm(`Confirm to logout ${name}`)
 
         if (confirmTologOut) {
- 
+
             await axios.delete(`http://localhost:5000/myCart/${token}`, {
                 headers: {
                     "authorization": `Bearer ${token}`
@@ -29,7 +29,7 @@ export default function GlobalHeader() {
                     navigate("/")
                 }).catch((resp) => {
                     console.log(resp.response)
-                }) 
+                })
 
         }
     }
@@ -44,8 +44,12 @@ export default function GlobalHeader() {
                         <Link to="/">
                             <p>Home</p>
                         </Link>
-                        <p>myCart</p>
-                        <p>CheckOut</p>
+                        <Link to="/cart">
+                            <p>myCart</p>
+                        </Link>
+                        <Link to="/checkout">
+                            <p>CheckOut</p>
+                        </Link>
                     </NavContainer>
                     <LoginContainer>
                         <Link to="/signin">
