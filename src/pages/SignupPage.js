@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import GlobalHeader from "./components/GlobalHeader"
 import { Link, useNavigate } from "react-router-dom"
 import { useContext, useState } from "react"
 import axios from "axios"

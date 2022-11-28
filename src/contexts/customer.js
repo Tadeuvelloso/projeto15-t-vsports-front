@@ -12,7 +12,6 @@ export const CustomerProvider = ({ children }) => {
     const [arrayToCheckout, setArrayToCheckout] = useState([])
 
 
-
     return (
         <CustomerContext.Provider
             value={{ token, setToken, name, setName, myCartArray, setMyCartArray, arrayToCheckout, setArrayToCheckout }}>
