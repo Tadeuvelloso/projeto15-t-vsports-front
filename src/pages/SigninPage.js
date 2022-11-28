@@ -18,7 +18,6 @@ export default function SignIn() {
             setForm({
                 ...form, [e.target.name]: e.target.value
             })
-            console.log(form)
         }
 
         function postSignIn(e) {
@@ -26,7 +25,6 @@ export default function SignIn() {
 
             axios.post(`http://localhost:5000/sign-in`, form)
                 .then((resp) => {
-                    console.log(resp)
                     setToken(resp.data.token)
                     setName(resp.data.userName)
                     alert(`Login made with Success`)

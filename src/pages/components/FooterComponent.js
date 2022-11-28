@@ -6,6 +6,7 @@ export default function FooterComponent() {
     return (
         <FooterContainer>
             <GoToCartButton onClick={() => navigate("/cart")}> conclude and proceed to my cart</GoToCartButton>
+            <GoTocheckoutButton onClick={() => navigate("/checkout")}> conclude and proceed to my cart</GoTocheckoutButton>
         </FooterContainer>
     )
 }
@@ -19,6 +20,18 @@ const FooterContainer = styled.footer`
     align-items: center;
 `
 const GoToCartButton = styled.button`
+    display: flex;
+    border: 1px solid black;
+    width: 100px;
+    height: 60px;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    align-self: center;
+    align-items: center;
+    bottom: 5px;
+`
+
+const GoTocheckoutButton = styled.button`
     display: flex;
     border: 1px solid black;
     width: 100px;
