@@ -56,7 +56,7 @@ export default function CartPage() {
 
                 </MainContent>
                 <FooterContainer>
-                    <GoTocheckoutButton onClick={GoTocheckout}> conclude and proceed to my cart</GoTocheckoutButton>
+                    <GoTocheckoutButton onClick={GoTocheckout}> conclude and proceed to my checkout</GoTocheckoutButton>
                 </FooterContainer>
             </>
         )
