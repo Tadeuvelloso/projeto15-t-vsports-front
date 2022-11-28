@@ -41,7 +41,6 @@ export default function SignIn() {
 
     return (
         <>
-            <GlobalHeader></GlobalHeader>
             <MainContent>
                 <LeftColumn></LeftColumn>
                 <RightColumn></RightColumn>
