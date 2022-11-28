@@ -23,7 +23,7 @@ export default function SignUpPage() {
     function postSignIn(e) {
         e.preventDefault();
 
-        axios.post(`http://localhost:5000/sign-up`, form)
+        axios.post(`https://tvs-api.onrender.com/sign-up`, form)
             .then((resp) => {
                 alert(`signUp made with Success`)
                 navigate("/signIn")

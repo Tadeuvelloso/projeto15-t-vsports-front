@@ -13,7 +13,7 @@ export default function CheckOut (){
     function buyComfirm (e){
         e.preventDefault();
 
-        const URL = `http://localhost:5000/myCart`
+        const URL = `https://tvs-api.onrender.com/myCart`
 
         const config = {
             headers: {
