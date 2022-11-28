@@ -39,7 +39,6 @@ export default function SignUpPage() {
 
     return (
         <>
-            <GlobalHeader></GlobalHeader>
             <MainContent>
                 <LeftColumn></LeftColumn>
                 <RightColumn></RightColumn>
