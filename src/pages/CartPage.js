@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useContext, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import { CustomerContext } from "../contexts/customer"
 import GlobalHeader from "./components/GlobalHeader"
@@ -7,19 +8,25 @@ import ProductContainer from "./components/ProductContainer"
 
 export default function HomePage() {
     const { token, arrayToCheckout, setArrayToCheckout } = useContext(CustomerContext)
-    const config = {
-        headers: {
-            "authorization": `Bearer ${token}`
-        }
-    }
+
+    const navigate = useNavigate()
+
+
     useEffect(() => {
-        axios.get(`http://localhost:5000/myCart`, config)
-            .then((resp) => {
-                setArrayToCheckout(resp.data)
+
+        if (token) {
+            axios.get(`http://localhost:5000/myCart`, {
+                headers: {
+                    "authorization": `Bearer ${token}`
+                }
             })
-            .catch((resp) => {
-                console.log(resp.response)
-            })
+                .then((resp) => {
+                    setArrayToCheckout(resp.data)
+                })
+                .catch((resp) => {
+                    console.log(resp.response)
+                })
+        }
     }, [])
 
     console.log(arrayToCheckout)
@@ -48,13 +55,28 @@ export default function HomePage() {
     }
 
     else {
+        if (!token) {
+
+            setTimeout(()=> navigate("/signIn"), 5000);
+
+            return (
+                <>
+                    <p>Please log In to access your cart</p>
+                </>
+
+            )
+        }
+
         return (
             <>
                 <p>loading...</p>
-            </>)
+            </>
+        )
     }
 
 }
+
+
 
 const MainContent = styled.main`
     width: 100%;
